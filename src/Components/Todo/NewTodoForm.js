@@ -42,4 +42,5 @@ const mapDispatchToprops = dispatch =>({
                                         //e.g we want to trigger an action when a user clicks create todo button on the new todo form
 });
 
-export connect(mapStateToProps,mapDispatchToprops)({NewTodoForm});
+// export connect(mapStateToProps,mapDispatchToprops)({NewTodoForm});
+export default connect(mapStateToProps,mapDispatchToprops)(NewTodoForm);
