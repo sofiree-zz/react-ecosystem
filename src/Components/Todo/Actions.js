@@ -16,4 +16,11 @@ export const deleteTodo = text =>({
     payload: {text},
 });
 
+
+export const MARK_COMPLETE = 'MARK_COMPLETE';
+export const markComplete = text =>({
+    type: MARK_COMPLETE,
+    payload: {text},
+});
+
 // reducers keep track of the state of the actions

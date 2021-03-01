@@ -1,7 +1,7 @@
 // a function named after a resource in the redux store it's in charge of managing
 // reducer takes the current state of the application and the action that was called and decides what happends as a result of this action called.
 
-import {CREATE_TODO, DELETE_TODO} from './Actions';
+import {CREATE_TODO, DELETE_TODO, MARK_COMPLETE,} from './Actions';
 export const todos= (state=[], action)=>{
     const {type, payload} = action;
 
@@ -18,8 +18,18 @@ export const todos= (state=[], action)=>{
         const {text}= payload;
         return state.filter(todo=> todo.text !== text);
     }
+    case MARK_COMPLETE: {
+        const {text}=payload;
+    return state.map(todo=>{
+        if (todo.text===text){
+        return {...todo, isCompleted: true};
+        }
+        return todo;
+    })
+    
+    }  
     default:
         return state;
+           
     }
-
 }
