@@ -6,9 +6,18 @@ import {createTodo} from './Actions';
 // connect functions using higher order components  i.e connect()(NewTodoForm)
 // instead of exporting the component norally, we export the component using connect()()
 const NewTodoForm =({todos, onCreatePressed})=>{
+   const handleClick=()=>{
+        const isDuplicateText=
+            todos.some(todo=>todo.text===inputValue);
+        if (!isDuplicateText){
+            onCreatePressed(inputValue);
+            setInputValue('');
+        }               
+    }
+
     const [inputValue, setInputValue] = useState('')
     return(
-        <div className="new-todo-form">
+        <form className="new-todo-form" onSubmit={handleClick}>
             <input
              className="new-todo-input" 
              type="text"
@@ -17,18 +26,11 @@ const NewTodoForm =({todos, onCreatePressed})=>{
              onChange={e=>setInputValue(e.target.value)}
              />
             <button 
-                onClick={()=>{
-                    const isDuplicateText=
-                        todos.some(todo=>todo.text===inputValue);
-                    if (!isDuplicateText){
-                        onCreatePressed(inputValue);
-                        setInputValue('');
-                    }               
-                }}
+                
                 className="new-todo-button"
-            
+                type="submit"
             >Create Todo</button>
-        </div>
+        </form>
     );
 }
 
